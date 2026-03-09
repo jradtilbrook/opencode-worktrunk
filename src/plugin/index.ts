@@ -24,21 +24,21 @@ export const WorktrunkPlugin: Plugin = async ({ $ }) => {
             properties?.status === "running" ||
             properties?.status === "busy"
           ) {
-            await $`wt config state marker set 🤖 || true`
+            await $`wt config state marker set 🤖 > /dev/null 2>&1 || true`
             markerSet = true
           }
         }
 
         // Session is idle (waiting for user input)
         if (event.type === "session.idle") {
-          await $`wt config state marker set 💬 || true`
+          await $`wt config state marker set 💬 > /dev/null 2>&1 || true`
           markerSet = true
         }
 
         // Session ended - clear the marker
         if (event.type === "session.deleted") {
           if (markerSet) {
-            await $`wt config state marker clear || true`
+            await $`wt config state marker clear > /dev/null 2>&1 || true`
             markerSet = false
           }
         }
