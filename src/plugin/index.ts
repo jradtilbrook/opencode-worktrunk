@@ -5,6 +5,7 @@ import type { Plugin } from "@opencode-ai/plugin"
  *
  * Shows OpenCode session status in `wt list` output:
  * - 🤖 = OpenCode is working
+ * - ❓ = OpenCode is waiting for user response (permission/question)
  * - 💬 = OpenCode is waiting for input
  *
  * Requires worktrunk (https://github.com/max-sixty/worktrunk) to be installed.
@@ -40,6 +41,12 @@ export const WorktrunkPlugin: Plugin = async () => {
           await runWt("config", "state", "marker", "set", "🤖")
           markerSet = true
         }
+      }
+
+      // OpenCode is asking a question (waiting for user response)
+      if (event.type === "permission.asked") {
+        await runWt("config", "state", "marker", "set", "❓")
+        markerSet = true
       }
 
       // Session is idle (waiting for user input)
