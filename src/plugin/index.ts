@@ -13,6 +13,10 @@ export const WorktrunkPlugin: Plugin = async ({ $ }) => {
   // Track if we've set a marker (to avoid unnecessary clears on startup)
   let markerSet = false
 
+  // Define emojis as variables to avoid Bun shell escaping issues
+  const WORKING = "🤖"
+  const WAITING = "💬"
+
   return {
     event: async ({ event }) => {
       try {
@@ -24,14 +28,14 @@ export const WorktrunkPlugin: Plugin = async ({ $ }) => {
             properties?.status === "running" ||
             properties?.status === "busy"
           ) {
-            await $`wt config state marker set 🤖 > /dev/null 2>&1 || true`
+            await $`wt config state marker set ${WORKING} > /dev/null 2>&1 || true`
             markerSet = true
           }
         }
 
         // Session is idle (waiting for user input)
         if (event.type === "session.idle") {
-          await $`wt config state marker set 💬 > /dev/null 2>&1 || true`
+          await $`wt config state marker set ${WAITING} > /dev/null 2>&1 || true`
           markerSet = true
         }
 
