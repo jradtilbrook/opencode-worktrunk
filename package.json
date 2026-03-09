@@ -1,0 +1,27 @@
+{
+  "name": "opencode-worktrunk",
+  "version": "0.1.0",
+  "description": "Show OpenCode session status in worktrunk's wt list output",
+  "main": "src/plugin/index.ts",
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "worktrunk",
+    "git-worktree",
+    "status",
+    "worktree"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jradtilbrook/opencode-worktrunk"
+  },
+  "homepage": "https://github.com/jradtilbrook/opencode-worktrunk#readme",
+  "bugs": {
+    "url": "https://github.com/jradtilbrook/opencode-worktrunk/issues"
+  },
+  "author": "jradtilbrook",
+  "license": "MIT",
+  "peerDependencies": {
+    "@opencode-ai/plugin": "*"
+  }
+}
