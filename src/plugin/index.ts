@@ -32,12 +32,10 @@ export const WorktrunkPlugin: Plugin = async () => {
     event: async ({ event }) => {
       // Session is actively running (AI working)
       if (event.type === "session.status") {
-        const properties = (event as { properties?: { status?: string } })
-          .properties
-        if (
-          properties?.status === "running" ||
-          properties?.status === "busy"
-        ) {
+        const properties = (
+          event as { properties?: { status?: { type?: string } } }
+        ).properties
+        if (properties?.status?.type === "busy") {
           await runWt("config", "state", "marker", "set", "🤖")
           markerSet = true
         }

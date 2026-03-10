@@ -55,7 +55,7 @@ The plugin listens to OpenCode session events:
 
 | Event | Marker | Meaning |
 |-------|--------|---------|
-| `session.status` (running) | 🤖 | AI is actively working |
+| `session.status` (busy) | 🤖 | AI is actively working |
 | `session.idle` | 💬 | AI is waiting for your input |
 | `session.deleted` | (cleared) | Session ended |
 
